@@ -2,10 +2,11 @@ import routerNames from "./routerNames";
 import PageLogin from "../pages/PageLogin/index.js";
 import PageRegister from "../pages/PageRegister/index.js";
 import PageRecoverPass from "../pages/PageRecoverPass/index.js";
+import PageHome from "../pages/PageHome/index.js";
 
 
 const routerConfig = () => {
-    const pageComponents = [PageLogin, PageRegister, PageRecoverPass];
+    const pageComponents = [PageHome, PageLogin, PageRegister, PageRecoverPass];
     const routeKeys = Object.keys(routerNames);
 
     if (pageComponents.length !== routeKeys.length) {

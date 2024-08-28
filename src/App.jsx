@@ -1,10 +1,10 @@
-
+import DisplayPage from "./router/routes/DisplayPage.jsx";
 
 function App() {
 
-  return (
-    <div>Hello World</div>
-  )
+    return (
+        <DisplayPage/>
+    )
 }
 
-export default App
+export default App;
