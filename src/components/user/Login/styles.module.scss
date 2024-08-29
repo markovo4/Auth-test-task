@@ -3,7 +3,6 @@
   width: 100vw;
   height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
   background-image: url('../../../assets/img/GTA_BG_Auth.webp');
   background-repeat: no-repeat;
@@ -47,6 +46,70 @@
   width: 100%;
   z-index: 1;
 }
+
+.gtaMen {
+  width: 700px;
+  height: 798px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  background-image: url('../../../assets/img/GTA_men.webp');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  z-index: 1;
+}
+
+.gtaMen::after {
+  content: '';
+  position: absolute;
+  width: 760px;
+  height: 685px;
+  bottom: 0;
+  left: 0;
+  background-image: url('../../../assets/img/GTA_cars.webp');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.gtaWomen {
+  width: 661px;
+  height: 770px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  background-image: url('../../../assets/img/GTA_women.webp');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  z-index: 1;
+}
+
+.gtaWomen::after {
+  content: '';
+  position: absolute;
+  width: 856px;
+  height: 685px;
+  bottom: 0;
+  right: 0;
+
+  background-image: url('../../../assets/img/GTA_guns.webp');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.imageWrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+
 
 
 
