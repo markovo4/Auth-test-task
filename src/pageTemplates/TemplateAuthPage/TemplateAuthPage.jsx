@@ -1,8 +1,14 @@
 import PropTypes from "prop-types";
+import styles from "./styles.module.scss";
 
-const TemplateAuthPage = ({className = null, children}) => {
+const TemplateAuthPage = ({children}) => {
     return (
-        <main className={className}>
+        <main className={styles.login}>
+            <div className={styles.logo}/>
+            <div className={styles.loginBackground}/>
+            <div className={styles.gtaMen}/>
+            <div className={styles.gtaWomen}/>
+            <div className={styles.footer}/>
             {children}
         </main>
     )
