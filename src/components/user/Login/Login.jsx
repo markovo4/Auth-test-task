@@ -1,6 +1,11 @@
+import styles from './styles.module.scss';
+
 const Login = () => {
     return (
-        <div>Login</div>
+        <section className={styles.login}>
+            <div className={styles.loginBackground}/>
+            <div className={styles.footer}/>
+        </section>
     )
 }
 

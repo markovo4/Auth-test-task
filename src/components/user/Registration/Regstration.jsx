@@ -1,6 +1,10 @@
+import styles from "../Login/styles.module.scss";
+
 const Registration = () => {
     return (
-        <div>Registration</div>
+        <section className={styles.registration}>
+            <div className={styles.regBackground}/>
+        </section>
     )
 }
 
