@@ -16,6 +16,14 @@
     color: red;
   }
 
+  .focusedErrorLabel {
+    color: red;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    transform: translate(0, -12px);
+  }
+
   .focusedLabel {
     color: #606060;
     font-size: 14px;
@@ -42,13 +50,8 @@
       border-color: #FFFFFF4D;
     }
 
-
     &:invalid {
       border-color: red;
-    }
-
-    &.errorInput {
-      color: red;
     }
 
     &:disabled {

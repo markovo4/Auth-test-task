@@ -20,13 +20,16 @@ const FormInput = () => {
     return (
         <div className={styles.inputGroup}>
             <label
-                className={`${styles.label} ${isFocused || hasValue ? styles.focusedLabel : ''} ${error ? styles.errorLabel : ''}`}
+                className={`${styles.label} 
+                ${isFocused || hasValue ? styles.focusedLabel && error ?
+                    styles.focusedErrorLabel : styles.focusedLabel : ''} 
+                        ${error ? styles.errorLabel : ''}`}
                 htmlFor="username"
             >
                 Username
             </label>
             <input
-                className={`${styles.input} ${error ? styles.errorInput : ''}`}
+                className={`${styles.input}`}
                 id="username"
                 name="username"
                 type="text"
