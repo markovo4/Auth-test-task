@@ -1,7 +1,9 @@
+import FormInput from "../../UI/inputs/FormInput";
+
 const Login = () => {
     return (
         <section>
-            <input/>
+            <FormInput/>
         </section>
     )
 }
