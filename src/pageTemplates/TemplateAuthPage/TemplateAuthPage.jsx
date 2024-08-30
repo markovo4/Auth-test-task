@@ -1,22 +1,22 @@
 import PropTypes from "prop-types";
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss'
 
-const TemplateAuthPage = ({children}) => {
+const TemplateAuthPage = ({className, children}) => {
     return (
-        <main className={styles.login}>
+        <main className={`${styles.login} ${className || ''}`}>
+            {children}
             <div className={styles.logo}/>
             <div className={styles.loginBackground}/>
             <div className={styles.gtaMen}/>
             <div className={styles.gtaWomen}/>
             <div className={styles.footer}/>
-            {children}
         </main>
-    )
-}
+    );
+};
 
 TemplateAuthPage.propTypes = {
     className: PropTypes.string,
-    children: PropTypes.object.isRequired
-}
+    children: PropTypes.node.isRequired
+};
 
 export default TemplateAuthPage;
