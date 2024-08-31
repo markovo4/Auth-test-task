@@ -1,12 +1,16 @@
 import {useState} from 'react';
 import styles from './styles.module.scss';
+import PropTypes from "prop-types";
 
-const FormInput = () => {
+const FormInput = ({id, name, type, label, text}) => {
     const [isFocused, setIsFocused] = useState(false);
     const [hasValue, setHasValue] = useState(false);
     const [error, setError] = useState(false);
+    const [inputValue, setInputValue] = useState('');
+
 
     const handleChange = (e) => {
+        setInputValue(e.target.value)
         setError(!e.target.checkValidity());
         setHasValue(e.target.value.length > 0);
     }
@@ -24,15 +28,16 @@ const FormInput = () => {
                 ${isFocused || hasValue ? styles.focusedLabel && error ?
                     styles.focusedErrorLabel : styles.focusedLabel : ''} 
                         ${error ? styles.errorLabel : ''}`}
-                htmlFor="username"
+                htmlFor={label}
             >
-                Username
+                {text}
             </label>
             <input
+                value={inputValue}
                 className={`${styles.input}`}
-                id="username"
-                name="username"
-                type="text"
+                id={id}
+                name={name}
+                type={type}
                 onFocus={() => setIsFocused(true)}
                 onBlur={handleBlur}
                 onChange={handleChange}
@@ -41,5 +46,13 @@ const FormInput = () => {
         </div>
     );
 };
+
+FormInput.propTypes = {
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+}
 
 export default FormInput;

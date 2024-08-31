@@ -1,12 +1,15 @@
 import FormInput from "../../UI/inputs/FormInput";
 import styles from './styles.module.scss';
 import {useState} from "react";
+import FormCheckBox from "../../UI/inputs/FormCheckBox";
+import FormButton from "../../UI/buttons/FormButton/index.js";
 
 const Login = () => {
 
     const [login, setLogin] = useState(true);
     const [register, setRegister] = useState(false);
     const [recoverPass, setRecoverPass] = useState(false);
+    const [checked, setChecked] = useState(false)
 
     const handleClick = (e) => {
         const {name} = e.target;
@@ -25,18 +28,38 @@ const Login = () => {
         }
     }
 
+    const handleCheck = (id) => {
+        if (id === 'rememberMe') {
+            setChecked(!checked)
+        }
+    }
+
     return (
         <div className={styles.container}>
             {login && <form className={styles.formLogin}>
-                <FormInput/>
-                <FormInput/>
+                <FormInput
+                    name={'login'}
+                    id={'login'}
+                    label={'login'}
+                    text={'Логин'}
+                    type={'text'}
+                />
+
+                <FormInput
+                    name={'e-mail'}
+                    id={'e-mail'}
+                    label={'e-mail'}
+                    text={'E-mail'}
+                    type={'email'}
+                />
 
                 <div className={styles.wrapper}>
-                    <div className={styles.inputGroup}>
-                        <input type="checkbox" id="rememberMe" className={styles.formCheckBox}/>
-                        <label htmlFor="rememberMe" className={styles.checkBoxLabel}>Запомнить меня</label>
-                    </div>
-
+                    <FormCheckBox
+                        id={'rememberMe'}
+                        label={'Запомнить меня'}
+                        onChecked={handleCheck}
+                        isChecked={checked}
+                    />
 
                     <button
                         id="recoverPass"
@@ -49,15 +72,14 @@ const Login = () => {
                     </button>
                 </div>
 
-                <button
-                    id="authorize"
-                    type="button"
-                    name="authorize"
-                    className={styles.buttonAuth}
+                <FormButton
                     onClick={handleClick}
-                    aria-label="Log in">
-                    Войти
-                </button>
+                    text={'Войти'}
+                    label={'Log in'}
+                    type={'button'}
+                    name={'authorize'}
+                    id={'authorize'}
+                />
 
                 <button
                     id="registerButton"
@@ -72,20 +94,43 @@ const Login = () => {
             </form>}
 
             {register && <form className={styles.formLogin}>
-                <FormInput/>
-                <FormInput/>
-                <FormInput/>
-                <FormInput/>
+                <FormInput
+                    name={'login'}
+                    id={'login'}
+                    label={'login'}
+                    text={'Логин'}
+                    type={'text'}
+                />
+                <FormInput
+                    name={'e-mail'}
+                    id={'e-mail'}
+                    label={'e-mail'}
+                    text={'E-mail'}
+                    type={'email'}
+                />
+                <FormInput
+                    name={'password'}
+                    id={'password'}
+                    label={'password'}
+                    text={'Придумайте пароль'}
+                    type={'password'}
+                />
+                <FormInput
+                    name={'passwordConfirm'}
+                    id={'passwordConfirm'}
+                    label={'passwordConfirm'}
+                    text={'Повторите пароль'}
+                    type={'password'}
+                />
 
-                <button
-                    id="register"
-                    type="button"
-                    name="register"
-                    className={styles.buttonAuth}
+                <FormButton
+                    id={'register'}
+                    type={'button'}
+                    name={'register'}
                     onClick={handleClick}
-                    aria-label="Sign up">
-                    Зарегистрироваться
-                </button>
+                    label={'Sign up'}
+                    text={'Зарегистрироваться'}
+                />
 
                 <button
                     id="loginButton"
@@ -99,7 +144,23 @@ const Login = () => {
             </form>}
 
             {recoverPass && <form className={styles.formLogin}>
-                <FormInput/>
+                <FormInput
+                    name={'e-mail'}
+                    id={'e-mail'}
+                    label={'e-mail'}
+                    text={'Введите E-mail'}
+                    type={'email'}
+                />
+
+
+                <FormButton
+                    id={'recoverPass'}
+                    type={'button'}
+                    name={'recoverPass'}
+                    onClick={handleClick}
+                    label={'Access recover'}
+                    text={'Востановить доступ'}
+                />
 
                 <button
                     id="backButton"
