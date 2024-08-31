@@ -4,7 +4,7 @@ import {useState} from "react";
 import FormCheckBox from "../../UI/inputs/FormCheckBox";
 import FormButton from "../../UI/buttons/FormButton/index.js";
 
-const Login = () => {
+const Auth = () => {
 
     const [login, setLogin] = useState(true);
     const [register, setRegister] = useState(false);
@@ -65,7 +65,7 @@ const Login = () => {
                         id="recoverPass"
                         type="button"
                         name="recoverPass"
-                        className={styles.buttonRegister}
+                        className={styles.buttonRecover}
                         onClick={handleClick}
                         aria-label="Forgot your password?">
                         забыли пароль?
@@ -176,4 +176,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default Auth;

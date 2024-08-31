@@ -1,0 +1,70 @@
+.login {
+  display: flex;
+  align-items: center;
+  width: 100vh;
+  height: 100vh;
+}
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.formLogin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+}
+
+.buttonRegister {
+  font-family: NanumGothic, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 18px;
+  text-align: center;
+  color: #D45922;
+  background-color: transparent;
+  border: unset;
+  transition: color 0.2s, text-shadow 0.2s; /* Include text-shadow in the transition */
+}
+
+.buttonRegister:hover {
+  color: #FFFFFF;
+  text-shadow: 0 0 10px #D45922; /* Add text shadow for the glow effect */
+  border: none; /* This is optional since border is unset, but can be kept for clarity */
+}
+
+.buttonRegister:hover:disabled {
+  color: #606060;
+  text-shadow: unset; /* Remove the glow effect when disabled */
+}
+
+.buttonRecover {
+  font-family: NanumGothic, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 18px;
+  text-align: center;
+  color: #D45922;
+  background-color: transparent;
+  border: unset;
+  transition: color 0.2s, text-shadow 0.2s; /* Include text-shadow in the transition */
+}
+
+.buttonRecover:hover {
+  color: #FFFFFF;
+  text-shadow: 0 0 10px #D45922; /* Add text shadow for the glow effect */
+  border: none; /* This is optional since border is unset, but can be kept for clarity */
+}
+
+.buttonRecover:hover:disabled {
+  color: #606060;
+  text-shadow: unset; /* Remove the glow effect when disabled */
+}
+
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}

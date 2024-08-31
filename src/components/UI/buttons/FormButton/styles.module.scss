@@ -15,4 +15,22 @@
   line-height: 17.23px;
   text-align: center;
   color: #FFFFFF;
+  transition: 0.2s;
+}
+
+.buttonAuth:hover {
+  transition: 0.2s;
+  box-shadow: 0 0 10px 0 #D45922;
+  background: #F47B45;
+}
+
+.buttonAuth:disabled {
+  background: #606060;
+  color: #2B2B2B;
+}
+
+.buttonAuth:disabled:hover {
+  background: #606060;
+  color: #2B2B2B;
+  box-shadow: unset;
 }

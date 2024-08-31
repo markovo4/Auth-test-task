@@ -1,10 +1,10 @@
 import TemplateAuthPage from "../../../pageTemplates/TemplateAuthPage";
-import Login from "../../../components/user/Login";
+import Auth from "../../../components/user/Auth";
 
 const PageLogin = () => {
     return (
         <TemplateAuthPage>
-            <Login/>
+            <Auth/>
         </TemplateAuthPage>
     )
 }
