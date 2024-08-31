@@ -1,4 +1,5 @@
-import DisplayPage from "./router/routes/DisplayPage.jsx";
+import DisplayPage from "./router/routes";
+
 
 function App() {
 

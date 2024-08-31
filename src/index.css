@@ -44,6 +44,10 @@ table {
     border-spacing: 0;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 @font-face {
     font-family: 'NanumGothic';
     src: url('./utils/fonts/NanumGothic.woff2') format('woff2'),

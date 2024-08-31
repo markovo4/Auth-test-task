@@ -1,5 +1,6 @@
 .inputGroup {
   position: relative;
+  width: 400px;
 
   .label {
     position: absolute;
@@ -34,13 +35,13 @@
 
   .input {
     width: 400px;
-    height: 35px;
+    height: 70px;
     padding: 20px 16px 5px 16px;
     background-color: #1B1D1E;
     border: 2px solid #313334;
     border-radius: 6px;
     color: white;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 18px;
     text-align: left;
     position: relative;

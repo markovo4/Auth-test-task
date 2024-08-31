@@ -1,135 +1,104 @@
-.login::before {
+html::before,
+html::after {
   content: '';
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url('../../assets/img/GTA_BG_Auth.webp');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  pointer-events: none;
   z-index: -2;
-  pointer-events: none; /* Prevent interaction */
 }
 
-.loginBackground,
-.gtaMen,
-.gtaWomen,
-.footer,
-.logo::after,
-.logo::before {
-  pointer-events: none; /* Prevent interaction */
+html::before {
+  background-image: url('../../assets/img/GTA_BG_Auth.webp');
 }
 
-.loginBackground {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+html::after {
+  background-image: url('../../assets/img/GTA_BG_Auth_login.webp');
   background-color: rgba(32, 32, 32, 0.64);
   backdrop-filter: blur(10px);
-  z-index: -2;
 }
 
-.login::after {
+main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+body::before,
+body::after,
+.bodyLeft::before,
+.bodyLeft::after,
+.bodyRight::after,
+.bodyRight::before {
   content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('../../assets/img/GTA_BG_Auth_login.webp');
+  position: fixed;
+  bottom: 0;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  z-index: -2;
+  z-index: -1;
 }
 
-.footer {
-  bottom: 0;
+.bodyLeft::before {
   left: 0;
-  position: absolute;
-  background: radial-gradient(ellipse at top center,
-          rgba(212, 89, 34, 0.53) 0%,
-          transparent 70%);
-  transform: rotate(180deg);
-  background-size: cover;
-  height: 242px;
-  width: 100%;
-  z-index: -2;
-}
-
-.gtaMen {
   width: 700px;
   height: 798px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
   background-image: url('../../assets/img/GTA_men.webp');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  z-index: -2;
 }
 
-.gtaMen::after {
-  content: '';
-  position: absolute;
+.bodyLeft::after {
+  left: 0;
   width: 760px;
   height: 685px;
-  bottom: 0;
-  left: 0;
   background-image: url('../../assets/img/GTA_cars.webp');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
 }
 
-.gtaWomen {
+.bodyRight::before {
+  right: 0;
   width: 661px;
   height: 770px;
-  position: absolute;
-  bottom: 0;
-  right: 0;
   background-image: url('../../assets/img/GTA_women.webp');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  z-index: -2;
 }
 
-.gtaWomen::after {
-  content: '';
-  position: absolute;
+.bodyRight::after {
+  right: 0;
   width: 846px;
   height: 630px;
-  bottom: 0;
-  right: 0;
   background-image: url('../../assets/img/GTA_guns.webp');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
 }
 
-.imageWrapper {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: flex-end;
-  z-index: -2;
-  pointer-events: none; /* Prevent interaction */
+.footer::before {
+  content: '';
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 242px;
+  background: radial-gradient(ellipse at top center, rgba(212, 89, 34, 0.53) 0%, transparent 70%);
+  transform: rotate(180deg);
+  z-index: -1;
 }
 
-.logo::after {
-  content: url(../../assets/svg/UNEKT.svg);
-  position: absolute;
+.logo::after, .logo::before {
+  position: fixed;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.logo::before {
+  content: url('../../assets/svg/UNEKT.svg');
   top: 115px;
   left: 31vw;
 }
 
-.logo::before {
-  content: url(../../assets/svg/UNEKTMain.svg);
-  position: absolute;
+.logo::after {
+  content: url('../../assets/svg/UNEKTMain.svg');
   top: 164px;
   left: 44vw;
 }
