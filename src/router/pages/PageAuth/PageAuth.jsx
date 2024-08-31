@@ -1,7 +1,7 @@
 import TemplateAuthPage from "../../../pageTemplates/TemplateAuthPage";
 import Auth from "../../../components/user/Auth";
 
-const PageLogin = () => {
+const PageAuth = () => {
     return (
         <TemplateAuthPage>
             <Auth/>
@@ -9,4 +9,4 @@ const PageLogin = () => {
     )
 }
 
-export default PageLogin;
+export default PageAuth;
