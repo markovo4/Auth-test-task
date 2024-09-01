@@ -3,9 +3,13 @@ import FormInput from "../../UI/inputs/FormInput";
 import FormCheckBox from "../../UI/inputs/FormCheckBox";
 import FormButton from "../../UI/buttons/FormButton/index.js";
 import styles from './styles.module.scss';
+import {loginSchema} from "../../../utils/validationSchemas/loginValidation.js";
+import {registrationSchema} from "../../../utils/validationSchemas/registerValidation.js";
+import {recPassSchema} from "../../../utils/validationSchemas/recPassValidation.js";
 
 const Auth = () => {
     const [activeForm, setActiveForm] = useState('login');
+    const [error, setError] = useState({});
     const [inputValues, setInputValues] = useState({
         login: '',
         email: '',
@@ -17,6 +21,7 @@ const Auth = () => {
 
     const handleFormSwitch = (targetForm) => {
         setActiveForm(targetForm);
+        setError({}); // Clear errors when switching forms
     };
 
     const handleInputChange = (e) => {
@@ -27,21 +32,51 @@ const Auth = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setError({}); // Reset error state before validation
         const formData = new FormData(e.target);
         const formValues = Object.fromEntries(formData.entries());
-        console.log(`Form: ${activeForm}`, formValues);
 
-        // Reset form inputs
-        setInputValues({
-            login: '',
-            email: '',
-            password: '',
-            passwordConfirm: '',
-            rememberMe: false
-        });
-        setResetTrigger(prev => !prev);
+        try {
+            let validationSchema;
+
+            switch (activeForm) {
+                case 'login':
+                    validationSchema = loginSchema;
+                    break;
+                case 'register':
+                    validationSchema = registrationSchema;
+                    break;
+                case 'recoverPass':
+                    validationSchema = recPassSchema;
+                    break;
+                default:
+                    return;
+            }
+
+            await validationSchema.validate(formValues, {abortEarly: false});
+            setResetTrigger(prev => !prev);
+
+            console.log(`Form: ${activeForm}`, formValues);
+
+            setInputValues({
+                login: '',
+                email: '',
+                password: '',
+                passwordConfirm: '',
+                rememberMe: false
+            });
+
+        } catch (err) {
+            if (err.inner) {
+                const errors = err.inner.reduce((acc, error) => {
+                    acc[error.path] = error.message;
+                    return acc;
+                }, {});
+                setError(errors);
+            }
+        }
     };
 
     const formContent = {
@@ -56,16 +91,18 @@ const Auth = () => {
                     value={inputValues.login}
                     onChange={handleInputChange}
                     resetTrigger={resetTrigger}
+                    errorMessage={error.login || ''}
                 />
                 <FormInput
-                    name="email"
-                    id="email"
-                    label="e-mail"
-                    text="E-mail"
-                    type="email"
-                    value={inputValues.email}
+                    name="password"
+                    id="password"
+                    label="password"
+                    text="Пароль"
+                    type="password"
+                    value={inputValues.password}
                     onChange={handleInputChange}
                     resetTrigger={resetTrigger}
+                    errorMessage={error.password || ''}
                 />
                 <div className={styles.wrapper}>
                     <FormCheckBox
@@ -115,6 +152,7 @@ const Auth = () => {
                     value={inputValues.login}
                     onChange={handleInputChange}
                     resetTrigger={resetTrigger}
+                    errorMessage={error.login || ''}
                 />
                 <FormInput
                     name="email"
@@ -125,6 +163,7 @@ const Auth = () => {
                     value={inputValues.email}
                     onChange={handleInputChange}
                     resetTrigger={resetTrigger}
+                    errorMessage={error.email || ''}
                 />
                 <FormInput
                     name="password"
@@ -135,6 +174,7 @@ const Auth = () => {
                     value={inputValues.password}
                     onChange={handleInputChange}
                     resetTrigger={resetTrigger}
+                    errorMessage={error.password || ''}
                 />
                 <FormInput
                     name="passwordConfirm"
@@ -145,6 +185,7 @@ const Auth = () => {
                     value={inputValues.passwordConfirm}
                     onChange={handleInputChange}
                     resetTrigger={resetTrigger}
+                    errorMessage={error.passwordConfirm || ''}
                 />
                 <FormButton
                     id="register"
@@ -176,6 +217,7 @@ const Auth = () => {
                     value={inputValues.email}
                     onChange={handleInputChange}
                     resetTrigger={resetTrigger}
+                    errorMessage={error.email || ''}
                 />
                 <FormButton
                     id="recoverPass"

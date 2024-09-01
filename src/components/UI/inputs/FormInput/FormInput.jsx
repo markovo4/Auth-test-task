@@ -2,45 +2,39 @@ import {useEffect, useState} from 'react';
 import styles from './styles.module.scss';
 import PropTypes from "prop-types";
 
-const FormInput = ({id, name, type, label, text, value, onChange, resetTrigger}) => {
+const FormInput = ({id, name, type, text, value, onChange, resetTrigger, errorMessage}) => {
     const [isFocused, setIsFocused] = useState(false);
     const [hasValue, setHasValue] = useState(false);
-    const [error, setError] = useState(false);
 
     useEffect(() => {
         setHasValue(value.length > 0);
-        setError(!document.getElementById(id).checkValidity());
-    }, [id, value]);
-
+    }, [value]);
 
     useEffect(() => {
         if (resetTrigger) {
             setIsFocused(false);
             setHasValue(false);
-            setError(false);
         }
     }, [resetTrigger]);
 
     const handleBlur = (e) => {
         setIsFocused(false);
         setHasValue(e.target.value.length > 0);
-        setError(!e.target.checkValidity());
     };
 
     return (
         <div className={styles.inputGroup}>
             <label
                 className={`${styles.label} 
-                ${isFocused || hasValue ? styles.focusedLabel && error ?
-                    styles.focusedErrorLabel : styles.focusedLabel : ''} 
-                        ${error ? styles.errorLabel : ''}`}
-                htmlFor={label}
+                ${isFocused || hasValue ? styles.focusedLabel : ''} 
+                ${errorMessage ? styles.errorLabel : ''}`}
+                htmlFor={id}
             >
                 {text}
             </label>
             <input
                 value={value}
-                className={`${styles.input}`}
+                className={`${styles.input} ${errorMessage ? styles.inputError : ''}`}
                 id={id}
                 name={name}
                 type={type}
@@ -49,6 +43,7 @@ const FormInput = ({id, name, type, label, text, value, onChange, resetTrigger})
                 onChange={onChange}
                 required
             />
+            {errorMessage && <span className={styles.errorMessage}>{errorMessage}</span>}
         </div>
     );
 };
@@ -61,7 +56,8 @@ FormInput.propTypes = {
     text: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    resetTrigger: PropTypes.bool.isRequired
+    resetTrigger: PropTypes.bool.isRequired,
+    errorMessage: PropTypes.string
 };
 
 export default FormInput;
