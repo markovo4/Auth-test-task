@@ -55,6 +55,7 @@ const Auth = () => {
                     break;
                 case 'recoverPass':
                     validationSchema = recPassSchema;
+
                     break;
                 default:
                     return;
@@ -62,7 +63,20 @@ const Auth = () => {
 
             await validationSchema.validate(formValues, {abortEarly: false});
             setResetTrigger(prev => !prev);
-            showToast('This is a success message!', 'success', 3000);
+
+            switch (validationSchema) {
+                case loginSchema:
+                    showToast('Инструкции по востановлению высланы на почту', 'success', 3000);
+                    break;
+                case registrationSchema:
+                    showToast('Это нужно делать с осторожностью.', 'success', 3000);
+                    break;
+                case recPassSchema:
+                    showToast('Это действие может привести к не влияющим на вас событиям', 'success', 3000);
+                    break;
+                default:
+                    return;
+            }
             setInputValues({
                 login: '',
                 email: '',
@@ -79,7 +93,7 @@ const Auth = () => {
                 }, {});
                 setError(errors);
             }
-            showToast('This is an error message!', 'error', 3000);
+            showToast('Это действие запрещено.', 'error', 3000);
         }
     };
 

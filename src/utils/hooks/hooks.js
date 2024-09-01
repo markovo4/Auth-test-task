@@ -7,9 +7,12 @@ export const useToast = () => {
         const id = Date.now();
         setToasts((prevToasts) => [...prevToasts, {id, message, type, duration}]);
 
+        if (toasts.length >= 3) {
+            setToasts((prevToasts) => prevToasts.filter(toast => toast.id !== id));
+        }
+
         setTimeout(() => {
             setToasts((prevToasts) => prevToasts.filter(toast => toast.id !== id));
-
         }, duration)
     }
 
