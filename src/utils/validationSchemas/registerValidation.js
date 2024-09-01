@@ -2,25 +2,25 @@ import * as yup from 'yup';
 
 export const registrationSchema = yup.object().shape({
     login: yup.string()
-        .required('Login is required')
-        .min(4, 'Login must be at least 4 characters long')
-        .max(50, 'Login cannot be more than 50 characters long'),
+        .required('Логин обязателен')
+        .min(4, 'Логин должен содержать не менее 4 символов')
+        .max(50, 'Логин не может содержать более 50 символов'),
 
     email: yup.string()
-        .required('Email is required')
-        .email('Must be a valid email address')
-        .max(100, 'Email cannot be more than 100 characters long'),
+        .required('Электронная почта обязательна')
+        .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Не действительный адрес электронной почты')
+        .max(100, 'Не более 100 символов'),
 
     password: yup.string()
-        .required('Password is required')
-        .min(8, 'Password must be at least 8 characters long')
-        .max(100, 'Password cannot be more than 100 characters long')
-        .matches(/[A-Z]/, 'Password must contain at least one uppercase letter')
-        .matches(/[a-z]/, 'Password must contain at least one lowercase letter')
-        .matches(/[0-9]/, 'Password must contain at least one number')
-        .matches(/[@$!%*?&#]/, 'Password must contain at least one special character'),
+        .required('Пароль обязателен')
+        .min(8, 'Не менее 8 символов')
+        .max(100, 'Не более 100 символов')
+        .matches(/[A-Z]/, 'Нужна хотя бы одна заглавная буква')
+        .matches(/[a-z]/, 'Нужна хотя бы одна строчная буква')
+        .matches(/[0-9]/, 'Нужна хотя бы одна цифра')
+        .matches(/[@$!%*?&#]/, 'Нужен хотя бы один специальный символ'),
 
     passwordConfirm: yup.string()
-        .required('Password confirmation is required')
-        .oneOf([yup.ref('password'), null], 'Passwords must match'),
+        .required('Подтверждение пароля обязательно')
+        .oneOf([yup.ref('password'), null], 'Пароли должны совпадать'),
 });

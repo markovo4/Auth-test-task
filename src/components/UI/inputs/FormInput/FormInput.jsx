@@ -1,10 +1,19 @@
 import {useEffect, useState} from 'react';
 import styles from './styles.module.scss';
 import PropTypes from "prop-types";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
-const FormInput = ({id, name, type, text, value, onChange, resetTrigger, errorMessage}) => {
+const FormInput = ({id, name, type, text, value, onChange, resetTrigger, errorMessage, password}) => {
     const [isFocused, setIsFocused] = useState(false);
     const [hasValue, setHasValue] = useState(false);
+
+    const [isShown, setIsShown] = useState(false);
+
+    const handleToggle = () => {
+        setIsShown(!isShown);
+    }
+
 
     useEffect(() => {
         setHasValue(value.length > 0);
@@ -26,24 +35,30 @@ const FormInput = ({id, name, type, text, value, onChange, resetTrigger, errorMe
         <div className={styles.inputGroup}>
             <label
                 className={`${styles.label} 
-                ${isFocused || hasValue ? styles.focusedLabel : ''} 
-                ${errorMessage ? styles.errorLabel : ''}`}
+        ${isFocused || hasValue ?
+                    (errorMessage ? styles.focusedErrorLabel : styles.focusedLabel)
+                    : (errorMessage ? styles.errorLabel : '')}`}
                 htmlFor={id}
             >
                 {text}
             </label>
+
             <input
                 value={value}
                 className={`${styles.input} ${errorMessage ? styles.inputError : ''}`}
                 id={id}
                 name={name}
-                type={type}
+                type={type === 'password' ? isShown ? 'text' : 'password' : type}
                 onFocus={() => setIsFocused(true)}
                 onBlur={handleBlur}
                 onChange={onChange}
-                required
             />
             {errorMessage && <span className={styles.errorMessage}>{errorMessage}</span>}
+
+            {password &&
+                <button type={'button'} className={styles.displayPass} onClick={handleToggle}>
+                    {isShown ? <VisibilityIcon sx={{color: 'white'}}/> :
+                        <VisibilityOffIcon sx={{color: 'white'}}/>}</button>}
         </div>
     );
 };
@@ -57,7 +72,8 @@ FormInput.propTypes = {
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     resetTrigger: PropTypes.bool.isRequired,
-    errorMessage: PropTypes.string
+    errorMessage: PropTypes.string,
+    password: PropTypes.bool
 };
 
 export default FormInput;

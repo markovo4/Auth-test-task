@@ -6,8 +6,13 @@ import styles from './styles.module.scss';
 import {loginSchema} from "../../../utils/validationSchemas/loginValidation.js";
 import {registrationSchema} from "../../../utils/validationSchemas/registerValidation.js";
 import {recPassSchema} from "../../../utils/validationSchemas/recPassValidation.js";
+import {useToast} from "../../../utils/hooks/hooks.js";
+import ToastBar from "../../UI/ToastBar/ToastBar.jsx";
 
 const Auth = () => {
+
+    const {toasts, showToast} = useToast();
+
     const [activeForm, setActiveForm] = useState('login');
     const [error, setError] = useState({});
     const [inputValues, setInputValues] = useState({
@@ -57,9 +62,7 @@ const Auth = () => {
 
             await validationSchema.validate(formValues, {abortEarly: false});
             setResetTrigger(prev => !prev);
-
-            console.log(`Form: ${activeForm}`, formValues);
-
+            showToast('This is a success message!', 'success', 3000);
             setInputValues({
                 login: '',
                 email: '',
@@ -76,6 +79,7 @@ const Auth = () => {
                 }, {});
                 setError(errors);
             }
+            showToast('This is an error message!', 'error', 3000);
         }
     };
 
@@ -103,7 +107,9 @@ const Auth = () => {
                     onChange={handleInputChange}
                     resetTrigger={resetTrigger}
                     errorMessage={error.password || ''}
+                    password={true}
                 />
+
                 <div className={styles.wrapper}>
                     <FormCheckBox
                         id="rememberMe"
@@ -139,7 +145,9 @@ const Auth = () => {
                 >
                     Нет аккаунта? Зарегистрируйтесь!
                 </button>
+                <ToastBar toasts={toasts}/>
             </form>
+
         ),
         register: (
             <form className={styles.formLogin} onSubmit={handleSubmit}>
@@ -159,7 +167,7 @@ const Auth = () => {
                     id="email"
                     label="e-mail"
                     text="E-mail"
-                    type="email"
+                    type="text"
                     value={inputValues.email}
                     onChange={handleInputChange}
                     resetTrigger={resetTrigger}
@@ -175,6 +183,7 @@ const Auth = () => {
                     onChange={handleInputChange}
                     resetTrigger={resetTrigger}
                     errorMessage={error.password || ''}
+                    password={true}
                 />
                 <FormInput
                     name="passwordConfirm"
@@ -186,6 +195,7 @@ const Auth = () => {
                     onChange={handleInputChange}
                     resetTrigger={resetTrigger}
                     errorMessage={error.passwordConfirm || ''}
+                    password={true}
                 />
                 <FormButton
                     id="register"
@@ -204,6 +214,7 @@ const Auth = () => {
                 >
                     Уже есть аккаунт? Авторизуйтесь!
                 </button>
+                <ToastBar toasts={toasts}/>
             </form>
         ),
         recoverPass: (
@@ -213,7 +224,7 @@ const Auth = () => {
                     id="email"
                     label="e-mail"
                     text="Введите E-mail"
-                    type="email"
+                    type="text"
                     value={inputValues.email}
                     onChange={handleInputChange}
                     resetTrigger={resetTrigger}
@@ -236,6 +247,7 @@ const Auth = () => {
                 >
                     Назад
                 </button>
+                <ToastBar toasts={toasts}/>
             </form>
         )
     };

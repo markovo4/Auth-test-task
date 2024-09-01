@@ -1,0 +1,142 @@
+.toastContainer {
+  position: absolute;
+  height: auto;
+  top: 72%;
+  left: 40.5%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 360px;
+  height: 82px;
+  padding: 12px 16px 12px 16px;
+  border-radius: 12px;
+  border: 2px solid #7D7D7D1A;
+  background: linear-gradient(90deg, #1B1D1E 0%, #1B1D1E 100%);
+  gap: 12px;
+  animation: slideInFromTop 3s ease-in-out;
+}
+
+.title {
+  font-family: NanumGothic, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: left;
+  color: #FFFFFF;
+}
+
+.subtitle {
+  font-family: NanumGothic, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: left;
+  color: #FFFFFF;
+}
+
+.successBar, .warningBar, .errorBar, .infoBar {
+  content: '';
+  top: 21px;
+  left: -5px;
+  width: 4px;
+  height: 40px;
+  padding: 17px 0;
+  border-radius: 5px;
+  background: #5E6D7C;
+  position: absolute;
+}
+
+.successBar::before,
+.warningBar::before,
+.errorBar::before,
+.infoBar::before {
+  content: '';
+  bottom: 0;
+  width: 4px;
+  height: 40px;
+  border-radius: 5px;
+  position: absolute;
+  animation: reduceBar 3s linear forwards;
+}
+
+.successBar::before {
+  background: #93D63E;
+}
+
+.warningBar::before {
+  background: #D45922;
+}
+
+.errorBar::before {
+  background: #E22D59;
+}
+
+.infoBar::before {
+  background: #07B2E8;
+}
+
+@keyframes reduceBar {
+  from {
+    height: 100%;
+  }
+  to {
+    height: 0;
+  }
+}
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  10% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  20% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  30% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  40% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  60% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  70% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  80% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  90% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+
+
+
