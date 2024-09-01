@@ -6,23 +6,74 @@ import styles from './styles.module.scss';
 
 const Auth = () => {
     const [activeForm, setActiveForm] = useState('login');
-    const [isChecked, setIsChecked] = useState(false);
+    const [inputValues, setInputValues] = useState({
+        login: '',
+        email: '',
+        password: '',
+        passwordConfirm: '',
+        rememberMe: false,
+    });
+    const [resetTrigger, setResetTrigger] = useState(false);
 
     const handleFormSwitch = (targetForm) => {
         setActiveForm(targetForm);
     };
 
-    const handleCheck = () => {
-        setIsChecked(!isChecked);
+    const handleInputChange = (e) => {
+        const {name, type, checked, value} = e.target;
+        setInputValues(prevValues => ({
+            ...prevValues,
+            [name]: type === 'checkbox' ? checked : value
+        }));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const formValues = Object.fromEntries(formData.entries());
+        console.log(`Form: ${activeForm}`, formValues);
+
+        // Reset form inputs
+        setInputValues({
+            login: '',
+            email: '',
+            password: '',
+            passwordConfirm: '',
+            rememberMe: false
+        });
+        setResetTrigger(prev => !prev);
     };
 
     const formContent = {
         login: (
-            <form className={styles.formLogin}>
-                <FormInput name="login" id="login" label="login" text="Логин" type="text"/>
-                <FormInput name="e-mail" id="e-mail" label="e-mail" text="E-mail" type="email"/>
+            <form className={styles.formLogin} onSubmit={handleSubmit}>
+                <FormInput
+                    name="login"
+                    id="login"
+                    label="login"
+                    text="Логин"
+                    type="text"
+                    value={inputValues.login}
+                    onChange={handleInputChange}
+                    resetTrigger={resetTrigger}
+                />
+                <FormInput
+                    name="email"
+                    id="email"
+                    label="e-mail"
+                    text="E-mail"
+                    type="email"
+                    value={inputValues.email}
+                    onChange={handleInputChange}
+                    resetTrigger={resetTrigger}
+                />
                 <div className={styles.wrapper}>
-                    <FormCheckBox id="rememberMe" label="Запомнить меня" onChecked={handleCheck} isChecked={isChecked}/>
+                    <FormCheckBox
+                        id="rememberMe"
+                        label="Запомнить меня"
+                        onChange={handleInputChange}
+                        isChecked={inputValues.rememberMe}
+                    />
                     <button
                         id="recoverPass"
                         type="button"
@@ -34,8 +85,13 @@ const Auth = () => {
                         забыли пароль?
                     </button>
                 </div>
-                <FormButton id="authorize" type="button" name="authorize" onClick={() => {
-                }} label="Log in" text="Войти"/>
+                <FormButton
+                    id="authorize"
+                    type="submit"
+                    name="authorize"
+                    label="Log in"
+                    text="Войти"
+                />
                 <button
                     id="registerButton"
                     type="button"
@@ -49,14 +105,54 @@ const Auth = () => {
             </form>
         ),
         register: (
-            <form className={styles.formLogin}>
-                <FormInput name="login" id="login" label="login" text="Логин" type="text"/>
-                <FormInput name="e-mail" id="e-mail" label="e-mail" text="E-mail" type="email"/>
-                <FormInput name="password" id="password" label="password" text="Придумайте пароль" type="password"/>
-                <FormInput name="passwordConfirm" id="passwordConfirm" label="passwordConfirm" text="Повторите пароль"
-                           type="password"/>
-                <FormButton id="register" type="button" name="register" onClick={() => {
-                }} label="Sign up" text="Зарегистрироваться"/>
+            <form className={styles.formLogin} onSubmit={handleSubmit}>
+                <FormInput
+                    name="login"
+                    id="login"
+                    label="login"
+                    text="Логин"
+                    type="text"
+                    value={inputValues.login}
+                    onChange={handleInputChange}
+                    resetTrigger={resetTrigger}
+                />
+                <FormInput
+                    name="email"
+                    id="email"
+                    label="e-mail"
+                    text="E-mail"
+                    type="email"
+                    value={inputValues.email}
+                    onChange={handleInputChange}
+                    resetTrigger={resetTrigger}
+                />
+                <FormInput
+                    name="password"
+                    id="password"
+                    label="password"
+                    text="Придумайте пароль"
+                    type="password"
+                    value={inputValues.password}
+                    onChange={handleInputChange}
+                    resetTrigger={resetTrigger}
+                />
+                <FormInput
+                    name="passwordConfirm"
+                    id="passwordConfirm"
+                    label="passwordConfirm"
+                    text="Повторите пароль"
+                    type="password"
+                    value={inputValues.passwordConfirm}
+                    onChange={handleInputChange}
+                    resetTrigger={resetTrigger}
+                />
+                <FormButton
+                    id="register"
+                    type="submit"
+                    name="register"
+                    label="Sign up"
+                    text="Зарегистрироваться"
+                />
                 <button
                     id="loginButton"
                     type="button"
@@ -70,10 +166,24 @@ const Auth = () => {
             </form>
         ),
         recoverPass: (
-            <form className={styles.formLogin}>
-                <FormInput name="e-mail" id="e-mail" label="e-mail" text="Введите E-mail" type="email"/>
-                <FormButton id="recoverPass" type="button" name="recoverPass" onClick={() => {
-                }} label="Access recover" text="Востановить доступ"/>
+            <form className={styles.formLogin} onSubmit={handleSubmit}>
+                <FormInput
+                    name="email"
+                    id="email"
+                    label="e-mail"
+                    text="Введите E-mail"
+                    type="email"
+                    value={inputValues.email}
+                    onChange={handleInputChange}
+                    resetTrigger={resetTrigger}
+                />
+                <FormButton
+                    id="recoverPass"
+                    type="submit"
+                    name="recoverPass"
+                    label="Access recover"
+                    text="Востановить доступ"
+                />
                 <button
                     id="backButton"
                     type="button"
