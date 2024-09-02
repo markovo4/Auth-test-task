@@ -69,10 +69,10 @@ const Auth = () => {
                     showToast('Инструкции по востановлению высланы на почту', 'success', 3000);
                     break;
                 case registrationSchema:
-                    showToast('Это нужно делать с осторожностью.', 'success', 3000);
+                    showToast('Это нужно делать с осторожностью.', 'warning', 3000);
                     break;
                 case recPassSchema:
-                    showToast('Это действие может привести к не влияющим на вас событиям', 'success', 3000);
+                    showToast('Это действие может привести к не влияющим на вас событиям', 'info', 3000);
                     break;
                 default:
                     return;
