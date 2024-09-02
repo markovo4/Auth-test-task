@@ -26,7 +26,7 @@ const Auth = () => {
 
     const handleFormSwitch = (targetForm) => {
         setActiveForm(targetForm);
-        setError({}); // Clear errors when switching forms
+        setError({});
     };
 
     const handleInputChange = (e) => {
@@ -39,7 +39,7 @@ const Auth = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError({}); // Reset error state before validation
+        setError({});
         const formData = new FormData(e.target);
         const formValues = Object.fromEntries(formData.entries());
 
