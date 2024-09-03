@@ -16,7 +16,6 @@ const FormButton = ({
             className={styles.buttonAuth}
             aria-label={label}>
             {text}
-
         </button>
     )
 }

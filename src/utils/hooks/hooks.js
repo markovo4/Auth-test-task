@@ -10,7 +10,7 @@ export const useToast = () => {
         if (toasts.length >= 3) {
             setToasts((prevToasts) => prevToasts.slice(1));
         }
-
+        
         setTimeout(() => {
             setToasts((prevToasts) => prevToasts.filter(toast => toast.id !== id));
         }, duration)

@@ -1,13 +1,13 @@
 import {useState} from "react";
-import FormInput from "../../UI/inputs/FormInput";
-import FormCheckBox from "../../UI/inputs/FormCheckBox";
-import FormButton from "../../UI/buttons/FormButton/index.js";
+import FormInput from "../../../UI/inputs/FormInput";
+import FormCheckBox from "../../../UI/inputs/FormCheckBox";
+import FormButton from "../../../UI/buttons/FormButton/index.js";
 import styles from './styles.module.scss';
 import {loginSchema} from "../../../utils/validationSchemas/loginValidation.js";
 import {registrationSchema} from "../../../utils/validationSchemas/registerValidation.js";
 import {recPassSchema} from "../../../utils/validationSchemas/recPassValidation.js";
 import {useToast} from "../../../utils/hooks/hooks.js";
-import ToastBar from "../../UI/ToastBar/ToastBar.jsx";
+import ToastBar from "../../../UI/ToastBar/ToastBar.jsx";
 
 const Auth = () => {
 

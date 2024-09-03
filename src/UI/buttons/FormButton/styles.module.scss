@@ -1,3 +1,5 @@
+@import '../../../utils/theme/theme.scss';
+
 .buttonAuth {
   //Button
   width: 400px;
@@ -5,7 +7,7 @@
   padding: 10px;
   gap: 10px;
   border-radius: 6px;
-  background: #D45922;
+  background: $accent-color;
 
   //Button Text
   font-family: NanumGothic, sans-serif;
@@ -14,23 +16,23 @@
   font-weight: 800;
   line-height: 17.23px;
   text-align: center;
-  color: #FFFFFF;
+  color: $text-color;
   transition: 0.2s;
 }
 
 .buttonAuth:hover {
   transition: 0.2s;
-  box-shadow: 0 0 10px 0 #D45922;
-  background: #F47B45;
+  box-shadow: 0 0 10px 0 $accent-color;
+  background: $button-hover;
 }
 
 .buttonAuth:disabled {
-  background: #606060;
-  color: #2B2B2B;
+  background: $button-disabled;
+  color: $button-disabled-text;
 }
 
 .buttonAuth:disabled:hover {
-  background: #606060;
-  color: #2B2B2B;
+  background: $button-disabled;
+  color: $button-disabled-text;
   box-shadow: unset;
 }
