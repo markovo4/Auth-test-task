@@ -84,13 +84,28 @@
     border: 2px solid $border-error;
   }
 
-  .displayPass {
+  .showPass, .hidePass {
     position: absolute;
-    top: 24px;
+    top: 26px;
     right: 22px;
     background-color: transparent;
     border: unset;
   }
+
+  .showPass {
+    background-image: url("../../../assets/svg/eyeVisible.svg");
+    @include originalCenteredBg();
+    width: 20px;
+    height: 16px;
+  }
+
+  .hidePass {
+    background-image: url("../../../assets/svg/EyeClosed.svg");
+    @include originalCenteredBg();
+    width: 24px;
+    height: 24px;
+  }
+
 }
 
 

@@ -1,8 +1,6 @@
 import {useEffect, useState} from 'react';
 import styles from './styles.module.scss';
 import PropTypes from "prop-types";
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 const FormInput = ({id, name, type, text, value, onChange, resetTrigger, errorMessage, password}) => {
     const [isFocused, setIsFocused] = useState(false);
@@ -56,9 +54,8 @@ const FormInput = ({id, name, type, text, value, onChange, resetTrigger, errorMe
             {errorMessage && <span className={styles.errorMessage}>{errorMessage}</span>}
 
             {password &&
-                <button type={'button'} className={styles.displayPass} onClick={handleToggle}>
-                    {isShown ? <VisibilityIcon sx={{color: 'white'}}/> :
-                        <VisibilityOffIcon sx={{color: 'white'}}/>}</button>}
+                <button type={'button'} className={isShown ? styles.showPass : styles.hidePass}
+                        onClick={handleToggle}/>}
         </div>
     );
 };
