@@ -1,14 +1,13 @@
+@import "../../utils/theme/theme.scss";
+
 html::before,
 html::after {
   content: '';
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  @include fullscreen();
+  @include originalCenteredBg();
   pointer-events: none;
   z-index: -2;
 }
@@ -24,8 +23,7 @@ html::after {
 }
 
 main {
-  width: 100vw;
-  height: 100vh;
+  @include fullscreen();
   display: flex;
   align-items: center;
 }
@@ -39,9 +37,7 @@ body::after,
   content: '';
   position: fixed;
   bottom: 0;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  @include originalCenteredBg();
   z-index: -1;
 }
 

@@ -1,10 +1,12 @@
 import routerNames from "./routerNames";
 import PageAuth from "../pages/PageAuth/index.js";
 import PageHome from "../pages/PageHome/index.js";
+import PageCharacterSelect from "../pages/PageCharacterSelect";
+import PageSpawnSelect from "../pages/PageSpawnSelect";
 
 
 const routerConfig = () => {
-    const pageComponents = [PageHome, PageAuth];
+    const pageComponents = [PageHome, PageAuth, PageCharacterSelect, PageSpawnSelect];
     const routeKeys = Object.keys(routerNames);
 
     if (pageComponents.length !== routeKeys.length) {

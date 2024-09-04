@@ -14,3 +14,14 @@ $button-disabled: #606060;
 $button-disabled-text: #2B2B2B;
 
 $checkbox-active-disabled: #D4592280;
+
+@mixin fullscreen() {
+  width: 100vw;
+  height: 100vh;
+}
+
+@mixin originalCenteredBg() {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
