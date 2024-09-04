@@ -1,7 +1,7 @@
 @import "../../utils/theme/theme.scss";
 
-html::before,
-html::after {
+.html::before,
+.html::after {
   content: '';
   position: fixed;
   top: 0;
@@ -12,24 +12,24 @@ html::after {
   z-index: -2;
 }
 
-html::before {
+.html::before {
   background-image: url('../../assets/img/GTA_BG_Auth.webp');
 }
 
-html::after {
+.html::after {
   background-image: url('../../assets/img/GTA_BG_Auth_login.webp');
   background-color: rgba(32, 32, 32, 0.64);
   backdrop-filter: blur(10px);
 }
 
-main {
+.main {
   @include fullscreen();
   display: flex;
   align-items: center;
 }
 
-body::before,
-body::after,
+.body::before,
+.body::after,
 .bodyLeft::before,
 .bodyLeft::after,
 .bodyRight::after,

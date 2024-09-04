@@ -6,12 +6,10 @@ import styles from './styles.module.scss';
 import {loginSchema} from "../../../utils/validationSchemas/auth/loginValidation.js";
 import {registrationSchema} from "../../../utils/validationSchemas/auth/registerValidation.js";
 import {recPassSchema} from "../../../utils/validationSchemas/auth/recPassValidation.js";
-import {useToast} from "../../../utils/hooks/useToast.js";
-import ToastBar from "../../../UI/ToastBar/ToastBar.jsx";
 
 const Auth = () => {
 
-    const {toasts, showToast} = useToast();
+    // const {toasts, showToast} = useToast();
 
     const [activeForm, setActiveForm] = useState('login');
     const [error, setError] = useState({});
@@ -42,7 +40,7 @@ const Auth = () => {
         setError({});
         const formData = new FormData(e.target);
         const formValues = Object.fromEntries(formData.entries());
-
+        console.log(formValues)
         try {
             let validationSchema;
 
@@ -61,22 +59,33 @@ const Auth = () => {
                     return;
             }
 
+            switch (validationSchema) {
+                case 'loginSchema':
+                    alt.emit('cef::auth:authorization', {
+                        login: formValues.login,
+                        password: formValues.password,
+                        rememberMe: formValues.rememberMe
+                    });
+                    break;
+                case 'registrationSchema':
+                    alt.emit('cef::auth:registration', {
+                        login: formValues.login,
+                        email: formValues.email,
+                        password: formValues.password,
+                        passwordConfirm: formValues.passwordConfirm,
+                        someOtherProperty: false
+                    });
+                    break;
+                case 'recPassSchema':
+                    alt.emit('cef::auth:recovery', {
+                        email: formValues.email
+                    });
+                    break;
+            }
+
+
             await validationSchema.validate(formValues, {abortEarly: false});
             setResetTrigger(prev => !prev);
-
-            switch (validationSchema) {
-                case loginSchema:
-                    showToast('Инструкции по востановлению высланы на почту', 'success', 3000);
-                    break;
-                case registrationSchema:
-                    showToast('Это нужно делать с осторожностью.', 'warning', 3000);
-                    break;
-                case recPassSchema:
-                    showToast('Это действие может привести к не влияющим на вас событиям', 'info', 3000);
-                    break;
-                default:
-                    return;
-            }
             setInputValues({
                 login: '',
                 email: '',
@@ -93,7 +102,6 @@ const Auth = () => {
                 }, {});
                 setError(errors);
             }
-            showToast('Это действие запрещено.', 'error', 3000);
         }
     };
 
@@ -159,7 +167,6 @@ const Auth = () => {
                 >
                     Нет аккаунта? Зарегистрируйтесь!
                 </button>
-                <ToastBar toasts={toasts}/>
             </form>
 
         ),
@@ -228,7 +235,6 @@ const Auth = () => {
                 >
                     Уже есть аккаунт? Авторизуйтесь!
                 </button>
-                <ToastBar toasts={toasts}/>
             </form>
         ),
         recoverPass: (
@@ -261,7 +267,6 @@ const Auth = () => {
                 >
                     Назад
                 </button>
-                <ToastBar toasts={toasts}/>
             </form>
         )
     };

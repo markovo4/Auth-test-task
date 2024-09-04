@@ -1,7 +1,7 @@
-import TemplateAuthPage from "../../../pageTemplates/TemplateAuthPage/index.js";
 import {useNavigate} from "react-router-dom";
 import routerNames from "../../routes/routerNames.js";
 import styles from './styles.module.scss';
+import TemplateBasePage from "../../../pageTemplates/TemplateBasePage/index.js";
 
 const PageHome = () => {
     const navigate = useNavigate();
@@ -9,9 +9,9 @@ const PageHome = () => {
         navigate(routerNames.pageLogin)
     }
     return (
-        <TemplateAuthPage>
+        <TemplateBasePage>
             <button onClick={handleNav} className={styles.button}>Login</button>
-        </TemplateAuthPage>
+        </TemplateBasePage>
     )
 }
 

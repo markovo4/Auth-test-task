@@ -1,11 +1,11 @@
-import TemplateAuthPage from "../../../pageTemplates/TemplateAuthPage";
 import CharacterSelect from "../../../components/player/CharacterSelect";
+import TemplateBasePage from "../../../pageTemplates/TemplateBasePage";
 
 const PageCharacterSelect = () => {
     return (
-        <TemplateAuthPage>
+        <TemplateBasePage>
             <CharacterSelect/>
-        </TemplateAuthPage>
+        </TemplateBasePage>
     )
 }
 

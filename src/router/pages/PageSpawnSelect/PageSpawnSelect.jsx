@@ -1,11 +1,11 @@
-import TemplateAuthPage from "../../../pageTemplates/TemplateAuthPage";
 import SpawnSelect from "../../../components/player/SpawnSelect";
+import TemplateBasePage from "../../../pageTemplates/TemplateBasePage";
 
 const PageSpawnSelect = () => {
     return (
-        <TemplateAuthPage>
+        <TemplateBasePage>
             <SpawnSelect/>
-        </TemplateAuthPage>
+        </TemplateBasePage>
     )
 }
 
