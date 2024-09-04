@@ -40,7 +40,9 @@ const Auth = () => {
         setError({});
         const formData = new FormData(e.target);
         const formValues = Object.fromEntries(formData.entries());
+
         console.log(formValues)
+
         try {
             let validationSchema;
 
@@ -60,14 +62,14 @@ const Auth = () => {
             }
 
             switch (validationSchema) {
-                case 'loginSchema':
+                case loginSchema:
                     alt.emit('cef::auth:authorization', {
                         login: formValues.login,
                         password: formValues.password,
                         rememberMe: formValues.rememberMe
                     });
                     break;
-                case 'registrationSchema':
+                case registrationSchema:
                     alt.emit('cef::auth:registration', {
                         login: formValues.login,
                         email: formValues.email,
@@ -76,7 +78,7 @@ const Auth = () => {
                         someOtherProperty: false
                     });
                     break;
-                case 'recPassSchema':
+                case recPassSchema:
                     alt.emit('cef::auth:recovery', {
                         email: formValues.email
                     });
